@@ -6,6 +6,7 @@ import br.ufg.inf.repository.CategoriaRepository;
 import br.ufg.inf.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,32 +18,28 @@ public class ProdutoController {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
+    @Transactional
     @RequestMapping("/listarProdutos")
     public String listarProdutos(Model model) {
-
         //TODO: implementar paginação
         Iterable<Produto> listaProdutos = produtoRepository.findAll();
-
         model.addAttribute("listaProdutos", listaProdutos);
         return "produto/listagemProdutos";
     }
 
+    @Transactional
     @RequestMapping("/criaProduto")
     public String produto(Model model) {
-
         Iterable<Categoria> listaCategorias = categoriaRepository.findAll();
-
         model.addAttribute("listaCategorias", listaCategorias);
-
         return "produto/produto";
     }
 
+    @Transactional
     @RequestMapping("/salvaProduto")
     public String salvaProduto(Integer codigo, String descricao, Long idCategoria,
                                Double valorUnitario, Integer quantidadeMinima, Model model) {
-
         Categoria categoria = categoriaRepository.findOne(idCategoria);
-
         Produto produto = new Produto(
             codigo,
             descricao,
@@ -51,17 +48,15 @@ public class ProdutoController {
             categoria
         );
         produtoRepository.save(produto);
-
         Iterable<Produto> listaProdutos = produtoRepository.findAll();
         model.addAttribute("listaProdutos", listaProdutos);
-
         return "produto/listagemProdutos";
     }
 
+    @Transactional
     @RequestMapping("/excluirProduto")
     public String excluirProduto(Long idProduto) {
         produtoRepository.delete(idProduto);
-
         return "produto/listagemProdutos";
     }
 

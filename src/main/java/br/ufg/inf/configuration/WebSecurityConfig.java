@@ -12,9 +12,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Realmente deveria mudar todos os JS/CSS para uma pasta public...
         http.authorizeRequests()
-            //.antMatchers("/api/**").authenticated()
             .antMatchers("/css/**", "/js/**", "/imagens/**", "/fonts/**", "/recuperaConta").permitAll()
             .anyRequest().authenticated()
             .and()
