@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/materialize.min.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css">
     <title>Gitânio - Lista de produto</title>
 </head>
 <body class="row">
@@ -16,8 +17,8 @@
         <div class="nav-wrapper blue-grey">
             <a href="/" class="brand-logo left">Gitanio</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="active">Listagem</li>
-                <li><a href="movimentacao.html">Movimentação</a></li>
+                <li class="active active-menu-item">Listagem</li>
+                <li><a href="/movimentacao">Movimentação</a></li>
                 <li><a href="/criaProduto">Novo</a></li>
             </ul>
         </div>

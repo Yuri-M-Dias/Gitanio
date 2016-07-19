@@ -12,6 +12,7 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script type="text/javascript" src="/js/movimentacao.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/style.css">
     <title>Gitânio - Nova Compra</title>
 </head>
 <body class="row">
@@ -95,6 +96,9 @@
 
 <div class="row">
     <div class="input-field col s6 offset-s3 right-align">
+        <a href="/movimentacao" type="button" class="waves-effect waves-light btn blue-grey margin-right-10">
+            Cancelar
+        </a>
         <button type="button" onclick="movimentacaoAux.salvarCompra()" class="waves-effect waves-light btn blue-grey">
             Salvar
         </button>

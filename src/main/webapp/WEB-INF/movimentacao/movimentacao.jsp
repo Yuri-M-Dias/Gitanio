@@ -12,16 +12,17 @@
           media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>GitanioStock</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <title>Gitanio</title>
 </head>
 <body class="row">
 <nav>
     <div class="nav-wrapper blue-grey">
-        <a href="/" class="brand-logo left">GitanioStock</a>
+        <a href="/" class="brand-logo left">Gitanio</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/listarProdutos">Listagem</a></li>
-            <li class="active">Movimentação</li>
-            <li><a href="/criarProduto">Novo</a></li>
+            <li class="active active-menu-item">Movimentação</li>
+            <li><a href="/criaProduto">Novo</a></li>
         </ul>
     </div>
 </nav>
@@ -50,12 +51,6 @@
                 <td>${movimentacao.nomeCliente}</td>
                 <td>${movimentacao.nomeVendedor}</td>
                 <td>${movimentacao.valorTotal}</td>
-                <%--<td>--%>
-                    <%--<a class="btn-floating btn-tiny waves-effect waves-light red"><i--%>
-                            <%--class="material-icons">mode_edit</i></a>--%>
-                    <%--<a class="btn-floating btn-tiny waves-effect waves-light red"><i--%>
-                            <%--class="material-icons" onclick="produtoAux.excluirProduto(${produto.id})">delete</i></a>--%>
-                <%--</td>--%>
             </tr>
         </c:forEach>
         </tbody>

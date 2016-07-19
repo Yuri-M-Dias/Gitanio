@@ -12,6 +12,7 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script type="text/javascript" src="/js/movimentacao.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/style.css">
     <title>Gitânio - Nova Venda</title>
 </head>
 <body class="row">
@@ -22,7 +23,7 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/listarProdutos">Listagem</a></li>
             <li><a href="/movimentacao">Movimentação</a></li>
-            <li><a href="/criarProduto">Novo</a></li>
+            <li><a href="/criaProduto">Novo</a></li>
         </ul>
     </div>
 </nav>
@@ -60,7 +61,8 @@
         </div>
         <div class="input-field col right-align">
             <a href="#">
-                <button type="button" class="twaves-effect waves-light btn blue-grey" onclick="movimentacaoAux.adicionarProdutoMovimentacao()">
+                <button type="button" class="twaves-effect waves-light btn blue-grey"
+                        onclick="movimentacaoAux.adicionarProdutoMovimentacao()">
                     Adicionar
                 </button>
             </a>
@@ -100,7 +102,11 @@
 
     <div class="row">
         <div class="input-field col s6 offset-s3 right-align">
-            <button type="button" onclick="movimentacaoAux.salvarVenda()" class="twaves-effect waves-light btn blue-grey">
+            <a href="/movimentacao" type="button" class="waves-effect waves-light btn blue-grey margin-right-10">
+                Cancelar
+            </a>
+            <button type="button" onclick="movimentacaoAux.salvarVenda()"
+                    class="twaves-effect waves-light btn blue-grey">
                 Salvar
             </button>
         </div>

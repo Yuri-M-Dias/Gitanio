@@ -46,7 +46,7 @@ public class VendaController {
         List<Item> itens = construirListaItensFromJSON(itensJSON);
 
         itemRepository.save(itens);
-        Double descontoPercentual = desconto / 100;
+        Double descontoPercentual = calculaPorcentagem(desconto);
         Venda novaVenda = new Venda(
             documento,
             descontoPercentual,
@@ -75,6 +75,13 @@ public class VendaController {
             itens.add(new Item(idProduto, quantidade));
         }
         return itens;
+    }
+
+    private Double calculaPorcentagem(Double desconto) {
+        if (desconto != null) {
+            return desconto / 100;
+        }
+        return Double.MIN_VALUE;
     }
 
 }
