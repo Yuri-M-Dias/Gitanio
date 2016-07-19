@@ -10,15 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /*@Bean
-    public UserDetailsService userDetailsService(){
-        return null;
-    }*/
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // Realmente deveria mudar todos os JS/CSS para uma pasta public...
-        http.authorizeRequests().antMatchers("/api/**").authenticated().and().httpBasic().and().csrf().disable();
         http.authorizeRequests()
             //.antMatchers("/api/**").authenticated()
             .antMatchers("/css/**", "/js/**", "/imagens/**", "/fonts/**", "/recuperaConta").permitAll()
@@ -35,7 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
-            .withUser("user").password("password").roles("USER");
+            .withUser("user").password("password").roles("USER")
+            .and().withUser("gitanio").password("gitanio").roles("USER");
     }
 
 }
