@@ -31,28 +31,27 @@ public class MovimentacaoService {
     @Autowired
     private ProdutoService produtoService;
 
-    public Venda registarVenda(String numeroVenda, Double descontoPercentual, String nomeCliente, String nomeVendedor,
+    public Venda registarVenda(String numeroVenda, Double descontoPercentual,
+                               String nomeCliente, String nomeVendedor,
                                String itensJSON, Double valorTotal) {
-
         List<Item> itensVendidos = this.salvarItensPeloJson(itensJSON);
-        Venda venda = new Venda(numeroVenda, descontoPercentual, nomeVendedor, nomeCliente, itensVendidos, valorTotal);
-
+        Venda venda = new Venda(numeroVenda, descontoPercentual, nomeVendedor,
+            nomeCliente, itensVendidos, valorTotal);
         Venda vendaSalva = vendaRepository.save(venda);
         atualizaEstoqueVendido(itensVendidos);
         return vendaSalva;
     }
 
-    public Compra registrarCompra(String numeroCompra, String nomeFornecedor, Date dataCompraFormatada,
-                                  Double valorCompra, String itensJSON) {
-
+    public Compra registrarCompra(String numeroCompra, String nomeFornecedor,
+                                  Date dataCompraFormatada, Double valorCompra,
+                                  String itensJSON) {
         List<Item> itensComprados = salvarItensPeloJson(itensJSON);
-        Compra compra = new Compra(numeroCompra, nomeFornecedor, dataCompraFormatada, valorCompra, itensComprados);
+        Compra compra = new Compra(numeroCompra, nomeFornecedor,
+            dataCompraFormatada, valorCompra, itensComprados);
         Compra compraSalva = compraRepository.save(compra);
         atualizaEstoqueComprado(itensComprados);
         return compraSalva;
     }
-
-    ;
 
     private List<Item> salvarItensPeloJson(String itensJSON) {
         List<Item> itens = construirListaItensFromJSON(itensJSON);
@@ -82,13 +81,15 @@ public class MovimentacaoService {
 
     private void atualizaEstoqueVendido(List<Item> itens) {
         for (Item item : itens) {
-            produtoService.removeQntProdutosEstoque(item.getIdProduto(), item.getQuantidade());
+            produtoService
+                .removeQntProdutosEstoque(item.getIdProduto(), item.getQuantidade());
         }
     }
 
     private void atualizaEstoqueComprado(List<Item> itens) {
         for (Item item : itens) {
-            produtoService.adicionaQntProdutosEstoque(item.getIdProduto(), item.getQuantidade());
+            produtoService
+                .adicionaQntProdutosEstoque(item.getIdProduto(), item.getQuantidade());
         }
     }
 }

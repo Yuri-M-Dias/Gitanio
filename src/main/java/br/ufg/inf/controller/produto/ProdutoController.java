@@ -32,13 +32,10 @@ public class ProdutoController {
 
     @RequestMapping("/criaProduto/{id}")
     public String produto(@PathVariable("id") Long idProduto, Model model) {
-
         Iterable<Categoria> listaCategorias = produtoService.listarCategorias();
         Produto produto = produtoService.procurarUmProdutoPorId(idProduto);
-
         model.addAttribute("listaCategorias", listaCategorias);
         model.addAttribute("produto",produto);
-
         return "produto/produto";
     }
 
@@ -47,7 +44,6 @@ public class ProdutoController {
                                Double valorUnitario, Integer quantidadeMinima, Model model) {
         Categoria categoria = produtoService.procuraUmaCategoria(idCategoria);
         Produto produto = produtoService.procurarUmProdutoPorCodigo(codigo);
-
         if (produto == null) {
             Produto newProduto = new Produto(
                 codigo,
@@ -61,19 +57,17 @@ public class ProdutoController {
             produto.setCodigo(codigo);
             produto.setDescricao(descricao);
             produto.setCategoria(categoria);
+            produto.setValorUnitario(valorUnitario);
             produto.setQuantidadeMinima(quantidadeMinima);
             produtoService.salvaProduto(produto);
         }
-
-        Iterable<Produto> listaProdutos = produtoService.listarProdutos();
-        model.addAttribute("listaProdutos", listaProdutos);
-        return "produto/listagemProdutos";
+        return "redirect:/listarProdutos";
     }
 
     @RequestMapping("/excluirProduto")
     public String excluirProduto(Long idProduto) {
         produtoService.excluirProduto(idProduto);
-        return "produto/listagemProdutos";
+        return "redirect:/listarProdutos";
     }
 
 }
