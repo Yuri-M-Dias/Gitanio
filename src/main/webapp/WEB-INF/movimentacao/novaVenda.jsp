@@ -32,7 +32,7 @@
     <h3 class="col s6 offset-s3">Nova venda</h3>
 </div>
 
-<form action="/registrarVenda" method="post">
+<form method="post">
     <div class="row">
         <div class="input-field col s3 offset-s3">
             <input id="cliente" required name="cliente" type="text"
@@ -62,7 +62,7 @@
         </div>
         <div class="input-field col right-align">
             <a href="#">
-                <button type="submit"
+                <button type="button"
                         class="twaves-effect waves-light btn blue-grey"
                         onclick="movimentacaoAux.adicionarProdutoMovimentacao()">
                     Adicionar
@@ -107,7 +107,7 @@
             <a href="/movimentacao" type="button" class="waves-effect waves-light btn blue-grey margin-right-10">
                 Cancelar
             </a>
-            <button type="submit" onclick="movimentacaoAux.salvarVenda()"
+            <button type="button" onclick="movimentacaoAux.salvarVenda()"
                     class="twaves-effect waves-light btn blue-grey">
                 Salvar
             </button>

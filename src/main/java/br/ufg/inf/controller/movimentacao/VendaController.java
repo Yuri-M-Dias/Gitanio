@@ -47,5 +47,4 @@ public class VendaController {
         }
         return Double.MIN_VALUE;
     }
-
 }

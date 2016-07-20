@@ -58,7 +58,7 @@
             <div class="col s6 input-field">
                 <select id="categoria" name="idCategoria" type="number" min="1">
                     <c:forEach var="categoria" items="${listaCategorias}">
-                        <option value="${categoria.id}">${categoria.nome}</option>
+                        <option value="${categoria.id}" ${categoria.id == produto.categoria.id ? 'selected="selected"' : ''}>${categoria.nome}</option>
                     </c:forEach>
                 </select>
                 <label for="categoria">Categoria</label>
