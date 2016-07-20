@@ -8,11 +8,11 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"
+    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"
           media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css">
     <title>Gitanio</title>
 </head>
 <body class="row">
@@ -34,23 +34,23 @@
         </div>
         <div class="row">
             <div class="input-field col s4">
-                <input id="codigo" name="codigo" class="validate" type="number" min="1"/>
+                <input id="codigo" name="codigo" class="validate" type="number" min="1" value="${produto.getCodigo()}"/>
                 <label for="codigo">Código</label>
             </div>
             <div class="input-field col s8">
-                <input id="descricao" name="descricao" class="validate" type="text" min="1"/>
+                <input id="descricao" name="descricao" class="validate" type="text" min="1" value="${produto.getDescricao()}"/>
                 <label for="descricao">Descrição</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s4">
-                <input id="precoUnitario" name="valorUnitario" class="validate" type="number" min="1" step="0.01"/>
+                <input id="precoUnitario" name="valorUnitario" class="validate" type="number" min="1" step="0.01" value="${produto.getValorUnitario()}"/>
                 <label for="quantidadeMinima">Preço unitário</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s4">
-                <input id="quantidadeMinima" name="quantidadeMinima" class="validate" type="number" min="1"/>
+                <input id="quantidadeMinima" name="quantidadeMinima" class="validate" type="number" min="1" value="${produto.getQuantidadeMinima()}"/>
                 <label for="quantidadeMinima">Qnt. mínima</label>
             </div>
         </div>
@@ -72,7 +72,7 @@
 </div>
 <script type="text/javascript"
         src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="/js/materialize.min.js"></script>
 
 <script type="text/javascript"> // Enough JS to activate Materialize
 $(document).ready(function () {

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class ProdutoService {
@@ -31,6 +33,20 @@ public class ProdutoService {
 
     public Categoria procuraUmaCategoria(Long id){
         return categoriaRepository.findOne(id);
+    }
+
+    public Produto procurarUmProdutoPorId(Long id){
+        return produtoRepository.findOne(id);
+    }
+
+    public Produto procurarUmProdutoPorCodigo(int codigo){
+        List<Produto> produtos = produtoRepository.findByCodigo(codigo);
+        if (!produtos.isEmpty()) {
+            return produtos.get(0);
+        }
+        else {
+            return null;
+        }
     }
 
     public void excluirProduto(Long idProduto){
