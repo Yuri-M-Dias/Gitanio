@@ -2,11 +2,9 @@ package br.ufg.inf.controller.produto;
 
 import br.ufg.inf.model.Categoria;
 import br.ufg.inf.model.Produto;
-import br.ufg.inf.repository.CategoriaRepository;
-import br.ufg.inf.repository.ProdutoRepository;
+import br.ufg.inf.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,32 +12,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProdutoController {
 
     @Autowired
-    private ProdutoRepository produtoRepository;
-    @Autowired
-    private CategoriaRepository categoriaRepository;
+    private ProdutoService produtoService;
 
-    @Transactional
     @RequestMapping("/listarProdutos")
     public String listarProdutos(Model model) {
         //TODO: implementar paginação
-        Iterable<Produto> listaProdutos = produtoRepository.findAll();
+        Iterable<Produto> listaProdutos = produtoService.listarProdutos();
         model.addAttribute("listaProdutos", listaProdutos);
         return "produto/listagemProdutos";
     }
 
-    @Transactional
     @RequestMapping("/criaProduto")
     public String produto(Model model) {
-        Iterable<Categoria> listaCategorias = categoriaRepository.findAll();
+        Iterable<Categoria> listaCategorias = produtoService.listarCategorias();
         model.addAttribute("listaCategorias", listaCategorias);
         return "produto/produto";
     }
 
-    @Transactional
     @RequestMapping("/salvaProduto")
     public String salvaProduto(Integer codigo, String descricao, Long idCategoria,
                                Double valorUnitario, Integer quantidadeMinima, Model model) {
-        Categoria categoria = categoriaRepository.findOne(idCategoria);
+        Categoria categoria = produtoService.procuraUmaCategoria(idCategoria);
         Produto produto = new Produto(
             codigo,
             descricao,
@@ -47,16 +40,15 @@ public class ProdutoController {
             quantidadeMinima,
             categoria
         );
-        produtoRepository.save(produto);
-        Iterable<Produto> listaProdutos = produtoRepository.findAll();
+        produtoService.salvaProduto(produto);
+        Iterable<Produto> listaProdutos = produtoService.listarProdutos();
         model.addAttribute("listaProdutos", listaProdutos);
         return "produto/listagemProdutos";
     }
 
-    @Transactional
     @RequestMapping("/excluirProduto")
     public String excluirProduto(Long idProduto) {
-        produtoRepository.delete(idProduto);
+        produtoService.excluirProduto(idProduto);
         return "produto/listagemProdutos";
     }
 

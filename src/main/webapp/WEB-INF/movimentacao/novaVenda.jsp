@@ -35,12 +35,12 @@
 <form action="/registrarVenda" method="post">
     <div class="row">
         <div class="input-field col s3 offset-s3">
-            <input id="cliente" name="cliente" type="text"
+            <input id="cliente" required name="cliente" type="text"
                    class="validate">
             <label for="cliente">Nome do cliente</label>
         </div>
         <div class="input-field col s3">
-            <input id="documento" name="documento" type="text"
+            <input id="documento" required name="documento" type="text"
                    class="validate">
             <label for="documento">Número da venda</label>
         </div>
@@ -56,12 +56,14 @@
             <label>Produtos</label>
         </div>
         <div class="input-field col s1">
-            <input id="quantidade" name="quantidade" class="validate" type="number" min="1"/>
+            <input id="quantidade" required name="quantidade" class="validate"
+                   type="number" min="1"/>
             <label for="quantidade">Quantidade</label>
         </div>
         <div class="input-field col right-align">
             <a href="#">
-                <button type="button" class="twaves-effect waves-light btn blue-grey"
+                <button type="submit"
+                        class="twaves-effect waves-light btn blue-grey"
                         onclick="movimentacaoAux.adicionarProdutoMovimentacao()">
                     Adicionar
                 </button>
@@ -85,17 +87,17 @@
     <div class="row">
         <div class="input-field col s2 offset-s3">
             <input id="totalVenda" name="totalVenda" type="text"
-                   placeholder="R$1.000,00" class="validate">
+                   placeholder="R$1.000,00" required class="validate">
             <label for="totalVenda">Valor total da venda</label>
         </div>
         <div class="input-field col s2">
             <input id="desconto" name="desconto" type="text"
-                   placeholder="5%" class="validate">
+                   placeholder="5%" required class="validate">
             <label for="desconto">Desconto</label>
         </div>
         <div class="input-field col s2">
             <input id="vendedor" name="nomeVendedor" type="text"
-                   placeholder="Zé da Silva" class="validate">
+                   placeholder="Zé da Silva" required class="validate">
             <label for="vendedor">Vendedor</label>
         </div>
     </div>
@@ -105,7 +107,7 @@
             <a href="/movimentacao" type="button" class="waves-effect waves-light btn blue-grey margin-right-10">
                 Cancelar
             </a>
-            <button type="button" onclick="movimentacaoAux.salvarVenda()"
+            <button type="submit" onclick="movimentacaoAux.salvarVenda()"
                     class="twaves-effect waves-light btn blue-grey">
                 Salvar
             </button>
