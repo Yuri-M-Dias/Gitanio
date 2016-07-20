@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@Transactional
 public class MovimentacaoService {
 
     @Autowired
@@ -31,6 +30,7 @@ public class MovimentacaoService {
     @Autowired
     private ProdutoService produtoService;
 
+    @Transactional
     public Venda registarVenda(String numeroVenda, Double descontoPercentual,
                                String nomeCliente, String nomeVendedor,
                                String itensJSON, Double valorTotal) {
@@ -42,6 +42,7 @@ public class MovimentacaoService {
         return vendaSalva;
     }
 
+    @Transactional
     public Compra registrarCompra(String numeroCompra, String nomeFornecedor,
                                   Date dataCompraFormatada, Double valorCompra,
                                   String itensJSON) {
@@ -53,6 +54,7 @@ public class MovimentacaoService {
         return compraSalva;
     }
 
+    @Transactional
     private List<Item> salvarItensPeloJson(String itensJSON) {
         List<Item> itens = construirListaItensFromJSON(itensJSON);
 
@@ -79,6 +81,7 @@ public class MovimentacaoService {
         return itens;
     }
 
+    @Transactional
     private void atualizaEstoqueVendido(List<Item> itens) {
         for (Item item : itens) {
             produtoService
@@ -86,10 +89,12 @@ public class MovimentacaoService {
         }
     }
 
+    @Transactional
     private void atualizaEstoqueComprado(List<Item> itens) {
         for (Item item : itens) {
             produtoService
                 .adicionaQntProdutosEstoque(item.getIdProduto(), item.getQuantidade());
         }
     }
+
 }
