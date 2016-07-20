@@ -9,5 +9,4 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface CategoriaRepository extends PagingAndSortingRepository<Categoria, Long> {
 
     Categoria findByNome(@Param("nome") String nome);
-
 }

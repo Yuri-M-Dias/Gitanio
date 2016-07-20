@@ -3,6 +3,7 @@ package br.ufg.inf.model;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("COMPRA")
@@ -16,11 +17,12 @@ public class Compra extends Movimentacao {
 
     }
 
-    public Compra(String numeroCompra, String nomeFornecedor, Date dataCompra, Double valorTotal) {
+    public Compra(String numeroCompra, String nomeFornecedor, Date dataCompra, Double valorTotal, List<Item> itensComprados) {
         this.dataCompra = dataCompra;
         this.numeroCompra = numeroCompra;
         this.nomeFornecedor = nomeFornecedor;
         this.valorTotal = valorTotal;
+        this.itens = itensComprados;
     }
 
     public String getNumeroCompra() {

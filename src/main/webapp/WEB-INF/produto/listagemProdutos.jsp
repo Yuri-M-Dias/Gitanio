@@ -47,8 +47,7 @@
                         <td>${produto.codigo}</td>
                         <td>${produto.descricao}</td>
                         <td>${produto.categoria.descricao}</td>
-                            <%--TODO: Implementar quantidade em estoque--%>
-                        <td>10</td>
+                        <td>${produto.quantidadeEstoque}</td>
                         <td>${produto.quantidadeMinima}</td>
                         <td>${produto.valorUnitario}</td>
                         <td>

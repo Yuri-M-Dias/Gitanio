@@ -20,9 +20,9 @@ public class Venda extends Movimentacao {
     }
 
     public Venda(String numeroVenda, Double desconto, String nomeVendedor, String nomeCliente,
-                 List<Item> listaItens, Double valorTotal) {
+                 List<Item> itensVendidos, Double valorTotal) {
         this.valorTotal = valorTotal;
-        this.itens = listaItens;
+        this.itens = itensVendidos;
         this.numeroVenda = numeroVenda;
         this.desconto = desconto;
         this.nomeVendedor = nomeVendedor;

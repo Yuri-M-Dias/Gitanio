@@ -16,6 +16,7 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     Categoria categoria;
+    int quantidadeEstoque;
 
     protected Produto() {
     }
@@ -89,5 +90,13 @@ public class Produto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
     }
 }

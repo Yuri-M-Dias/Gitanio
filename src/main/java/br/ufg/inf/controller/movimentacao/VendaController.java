@@ -1,23 +1,16 @@
 package br.ufg.inf.controller.movimentacao;
 
-import br.ufg.inf.model.Item;
 import br.ufg.inf.model.Produto;
-import br.ufg.inf.model.Venda;
 import br.ufg.inf.repository.ItemRepository;
 import br.ufg.inf.repository.ProdutoRepository;
 import br.ufg.inf.repository.VendaRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import br.ufg.inf.service.MovimentacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class VendaController {
@@ -28,6 +21,8 @@ public class VendaController {
     ProdutoRepository produtoRepository;
     @Autowired
     ItemRepository itemRepository;
+    @Autowired
+    MovimentacaoService movimentacaoService;
 
     @RequestMapping("/novaVenda")
     public String novaVenda(Model model) {
@@ -40,41 +35,10 @@ public class VendaController {
 
     @RequestMapping(value = "/registrarVenda")
     @ResponseStatus(value = HttpStatus.OK)
-    public void registrarVenda(String cliente, String documento,
-                               Double valorTotal, String vendedor, Double desconto, String itensJSON) {
-
-        List<Item> itens = construirListaItensFromJSON(itensJSON);
-
-        itemRepository.save(itens);
+    public void registrarVenda(String cliente, String documento, Double valorTotal, String vendedor, Double desconto,
+                               String itensJSON) {
         Double descontoPercentual = calculaPorcentagem(desconto);
-        Venda novaVenda = new Venda(
-            documento,
-            descontoPercentual,
-            cliente, vendedor,
-            itens,
-            valorTotal);
-
-        vendaRepository.save(novaVenda);
-    }
-
-    //TODO: Mover para o serviço de movimentação
-    private List<Item> construirListaItensFromJSON(String itensJSON) {
-        ObjectMapper mapper = new ObjectMapper();
-        List<Map> listaMapas = null;
-        try {
-            listaMapas = mapper.readValue(itensJSON, ArrayList.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        List<Item> itens = new ArrayList<>();
-
-        for (Map itemMap : listaMapas) {
-            Long idProduto = Long.parseLong(itemMap.get("idProduto").toString());
-            Integer quantidade = Integer.parseInt(itemMap.get("quantidade").toString());
-            itens.add(new Item(idProduto, quantidade));
-        }
-        return itens;
+        movimentacaoService.registarVenda(documento, descontoPercentual, cliente, vendedor, itensJSON, valorTotal);
     }
 
     private Double calculaPorcentagem(Double desconto) {
